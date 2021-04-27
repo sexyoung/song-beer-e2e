@@ -1,6 +1,6 @@
 describe('專案', () => {
   it('選單長度為2', () => {
-    cy.visit('/');
+    cy.visit('https://tsb.sexyoung.tw');
     cy.get('nav>ul>li').should('have.length', 2);
   });
 })
