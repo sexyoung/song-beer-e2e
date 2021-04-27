@@ -21,19 +21,19 @@ describe('首頁', () => {
   });
 });
 
-describe('掃描頁', () => {
-  it('有出現ScanPage字樣', () => {
-    cy.visit('/scan');
-    cy.contains('ScanPage').should('be.visible');
-    // cy.screenshot('ScanPage');
-  });
+// describe('掃描頁', () => {
+//   it('有出現ScanPage字樣', () => {
+//     cy.visit('/scan');
+//     cy.contains('ScanPage').should('be.visible');
+//     // cy.screenshot('ScanPage');
+//   });
   
-  // it('出現 `Pls Loigin with!`', () => {
-  //   cy.contains('Pls Loigin with!').should('be.visible');
-  // });
+//   // it('出現 `Pls Loigin with!`', () => {
+//   //   cy.contains('Pls Loigin with!').should('be.visible');
+//   // });
   
-  // it('出現 臉書 與 Google 登入', () => {
-  //   cy.contains('Facebook SignIn').should('be.visible');
-  //   cy.contains('Google SignIn').should('be.visible');
-  // });
-});
+//   // it('出現 臉書 與 Google 登入', () => {
+//   //   cy.contains('Facebook SignIn').should('be.visible');
+//   //   cy.contains('Google SignIn').should('be.visible');
+//   // });
+// });

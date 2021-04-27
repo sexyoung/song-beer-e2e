@@ -81,6 +81,12 @@ jobs:
       - name: "UI Tests - Chrome"
         run: |
           npm run app
+      - name: 'Upload screenshots and videos to Slack'
+        uses: trymbill/cypress-slack-video-upload-action@v1.0.0
+        with:
+          token: ${{ secrets.SLACK_TOKEN }}
+          channels: 'with-kelly'
+          message-text: 'the test result'
 
   # ui-chrome-mobile-tests:
   #   timeout-minutes: 15
