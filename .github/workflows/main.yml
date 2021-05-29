@@ -81,6 +81,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          browser: chrome
+          headless: true
           spec: cypress/integration/HomePage.spec.js
       - name: 'Upload screenshots and videos to Slack'
         uses: trymbill/cypress-slack-video-upload-action@v1.0.0
