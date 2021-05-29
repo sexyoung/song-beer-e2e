@@ -7,6 +7,6 @@
     "cypress": "^7.1.0"
   },
   "scripts": {
-    "app": "cypress run --spec 'cypress/integration/tsb.spec.js'"
+    "home": "cypress run --spec 'cypress/integration/HomePage.spec.js'"
   }
 }
