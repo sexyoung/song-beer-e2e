@@ -34,7 +34,7 @@ describe('首頁', () => {
 describe('掃描頁', () => {
   beforeEach(() => {
     cy.viewport('iphone-x');
-    cy.visit('/scan');
+    cy.visit('/scan/');
     cy.contains('YES').click();
     // cy.contains('立即掃描').click();
   });
@@ -45,7 +45,7 @@ describe('掃描頁', () => {
 
   it('臉書登入：勾選已充分閱讀是否可以送出，並開始掃描QRcode？', () => {
     localStorage.setItem("ishara", token )
-    cy.visit('/private');
+    cy.visit('/private/');
     cy.get('input[name=check]').click();
     cy.get('form').submit();
     cy.contains('請掃描罐身QRcode貼紙').should('be.visible');
@@ -53,7 +53,7 @@ describe('掃描頁', () => {
   
   it('臉書登入：未勾選已充分閱讀是否不可以送出，並開始掃描QRcode？', () => {
     localStorage.setItem("ishara", token )
-    cy.visit('/private');
+    cy.visit('/private/');
     cy.get('form').submit();
     cy.contains('請掃描罐身QRcode貼紙').should('not.exist');
   });
@@ -63,13 +63,10 @@ describe('掃描頁', () => {
     cy.request({
         method: 'delete',
         url: 'https://tsb-api.sexyoung.tw/api/v1/ticket',
-        body:{
-          qrcode: '000T9WH',
-          key: key,
-        }
+        body: { key, qrcode: '000T9WH' }
       })
     localStorage.setItem("FAKE_QRCODE", '000T9WH');
-    cy.visit('/scan');
+    cy.visit('/scan/');
     cy.get('[data-testid="動畫頁"]').should('be.visible');
     // console.log("userAgent", navigator.userAgent);
   });
@@ -79,15 +76,12 @@ describe('掃描頁', () => {
     cy.request({
       method: 'delete',
       url: 'https://tsb-api.sexyoung.tw/api/v1/ticket',
-      body:{
-        qrcode: '000T9WH',
-        key: key,
-      }
+      body: { key, qrcode: '000T9WH' }
     })
     localStorage.setItem("FAKE_QRCODE", '000T9WH');
-    cy.visit('/scan');
+    cy.visit('/scan/');
     cy.get('[data-testid="動畫頁"]').should('be.visible');
-    cy.visit('/scan');
+    cy.visit('/scan/');
     // 1
     cy.get('[data-testid="動畫頁"]').should('not.exist');
     // 2

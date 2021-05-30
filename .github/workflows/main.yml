@@ -83,7 +83,7 @@ jobs:
         with:
           browser: chrome
           headless: true
-          spec: cypress/integration/*Page.spec.js
+          spec: cypress/integration/**/*.spec.js
       - name: 'Upload screenshots and videos to Slack'
         uses: trymbill/cypress-slack-video-upload-action@v1.0.0
         with:
