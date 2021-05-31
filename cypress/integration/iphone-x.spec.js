@@ -3,7 +3,7 @@ const sizes = ['iphone-x', 'iphone-xr', 'ipad-2', 'macbook-13'];
 const token = 'Xk5GBHFsf19V9sbXZUQ773dQQLVGO1BZr4VyVcLqaxa6OjQBckNQC5JBKe1W9f97e65I95VgqLcGrLYRDDSN472bwAfGiMMXErkZQvuoGldSnKhP7ux0eo3TiqMHpZjNdkuSjLO7WtE4wdnV98NPPtIa10eHjKYpR3PRacj2rK0BkZeArGec3bQwvQprWY1FEAPg1PN79RwVYrJuj6sqJA3x6RRfRoAzwpKonPDI4oMNOFK32JABqeAhvhLP0SV';
 const key= 'JUZU3rYBt7JprYgeoDd7mIcGbvkBxMz3qguSVof53rWAOtwPwv8KXFtQWAIDgwgD3SfchWEg6ODMcmJsq5ZOaX8htNsrbOpBHk4xOV6sPSmsW6ogolF7TtsoczkfIaFN';
 
-describe('首頁', () => {
+describe.skip('首頁', () => {
   beforeEach(() => {
     cy.viewport('iphone-x');
     cy.visit('/');
@@ -31,12 +31,11 @@ describe('首頁', () => {
   });
 });
 
-describe('掃描頁', () => {
+describe.skip('掃描頁', () => {
   beforeEach(() => {
     cy.viewport('iphone-x');
     cy.visit('/scan/');
     cy.contains('YES').click();
-    // cy.contains('立即掃描').click();
   });
 
   it('點選立即掃描是否出現登入方式選項頁？', () => {
@@ -61,10 +60,10 @@ describe('掃描頁', () => {
   it('掃描活動QRcode是否就出現過場動畫？', () => {
     localStorage.setItem("ishara", token);
     cy.request({
-        method: 'delete',
-        url: 'https://tsb-api.sexyoung.tw/api/v1/ticket',
-        body: { key, qrcode: '000T9WH' }
-      })
+      method: 'delete',
+      url: 'https://tsb-api.sexyoung.tw/api/v1/ticket',
+      body: { key, qrcode: '000T9WH' }
+    })
     localStorage.setItem("FAKE_QRCODE", '000T9WH');
     cy.visit('/scan/');
     cy.get('[data-testid="動畫頁"]').should('be.visible');
@@ -92,12 +91,56 @@ describe('掃描頁', () => {
   });
 });
 
-describe('中獎頁', () => {
-  it('過場動畫結束，是否出現中獎結果頁？', () => {
-    
+describe('未中獎頁', () => {
+  before(() => {
+    cy.viewport('iphone-x');
+    cy.visit('/scan/');
+    cy.contains('YES').click();
+  });
+
+  it('未中獎是，過場動畫結束，是否出現未中獎結果頁？', () => {
+    localStorage.setItem("ishara", token);
+    cy.request({
+      method: 'delete',
+      url: 'https://tsb-api.sexyoung.tw/api/v1/ticket',
+      body: { key, qrcode: '000T9WH' }
+    });
+    cy.request({
+      method: 'delete',
+      url: 'https://tsb-api.sexyoung.tw/api/v1/loser',
+      body: { key, ishara: token }
+    });
+    localStorage.setItem("FAKE_QRCODE", '000T9WH');
+    cy.visit('/scan/');
+    cy.contains('爽勁不夠 再接再厲').should('be.visible');
+  })
+
+  it('中獎填寫資料，姓名手機未填寫是否不可以送出？', () => {
+    localStorage.setItem("ishara", token);
+    cy.get('button').click();
+    cy.contains('請填寫以下資料以獲得暢快好禮').should('be.visible');
   })
   
+  it('未中獎填寫資料，姓名手機已填寫是否可以送出？是否出現已收到資料頁？是否可以繼續掃描QRcode？', () => {
+    localStorage.setItem("ishara", token);
+    cy.get('input[name=username]').type('越筱婉');
+    cy.get('input[name=phone]').type('0912345678');
+    cy.get('button').click();
+    // 1
+    cy.contains('請填寫以下資料以獲得暢快好禮').should('not.exist');
+    // 2
+    cy.contains('已收到您的資料').should('be.visible');
+    // 3
+    cy.contains('繼續掃描').should('be.visible');
+    cy.contains('繼續掃描').click();
+    cy.contains('請掃描罐身QRcode貼紙').should('be.visible');
+  })
+
+  
+  
+  
 });
+
 
 
 
@@ -113,7 +156,6 @@ describe('中獎頁', () => {
 // })
 // cy.contains('Facebook').click();
 // cy.get('input[name=email]').type('97307004@nccu.edu.tw');
-// cy.get('input[name=pass]').type('562479lovely');
 // cy.get('button').click();
 // cy.setCookie('status', 'SBWover18')
 // cy.screenshot('HomePage');
