@@ -91,14 +91,14 @@ describe.skip('掃描頁', () => {
   });
 });
 
-describe('未中獎頁', () => {
+describe('中獎頁', () => {
   before(() => {
     cy.viewport('iphone-x');
     cy.visit('/scan/');
     cy.contains('YES').click();
   });
 
-  it('未中獎是，過場動畫結束，是否出現未中獎結果頁？', () => {
+  it('過場動畫結束，是否出現中獎結果頁？', () => {
     localStorage.setItem("ishara", token);
     cy.request({
       method: 'delete',
@@ -112,16 +112,16 @@ describe('未中獎頁', () => {
     });
     localStorage.setItem("FAKE_QRCODE", '000T9WH');
     cy.visit('/scan/');
-    cy.contains('爽勁不夠 再接再厲').should('be.visible');
+    cy.contains('一抽爽中').should('be.visible');
   })
 
   it('中獎填寫資料，姓名手機未填寫是否不可以送出？', () => {
     localStorage.setItem("ishara", token);
-    cy.get('button').click();
+    cy.contains('確認送出').click();
     cy.contains('請填寫以下資料以獲得暢快好禮').should('be.visible');
   })
   
-  it('未中獎填寫資料，姓名手機已填寫是否可以送出？是否出現已收到資料頁？是否可以繼續掃描QRcode？', () => {
+  it('中獎填寫資料，姓名手機已填寫是否可以送出？是否出現已收到資料頁？是否可以繼續掃描QRcode？', () => {
     localStorage.setItem("ishara", token);
     cy.get('input[name=username]').type('越筱婉');
     cy.get('input[name=phone]').type('0912345678');
@@ -140,6 +140,7 @@ describe('未中獎頁', () => {
   
   
 });
+
 
 
 
