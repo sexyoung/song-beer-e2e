@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "^7.1.0"
+    "cypress": "7.4.0"
   },
   "scripts": {
     "home": "cypress run --spec 'cypress/integration/HomePage.spec.js'"
