@@ -14,7 +14,7 @@ describe("Dashboard", () => {
     it("login success", () => {
 
       cy.visit(
-        `${LOCAL}login?token=${TOKEN}`
+        `${DEV}login?token=${TOKEN}`
       );
       cy.contains("掃描狀況⼤表").should("be.visible");
       cy.contains("已掃描的明細列表").should("be.visible");
@@ -25,7 +25,7 @@ describe("Dashboard", () => {
   describe('已掃描頁', () => {
     it("switch to scan", () => {
       cy.visit(
-        `${LOCAL}login?token=${TOKEN}`
+        `${DEV}login?token=${TOKEN}`
       );
       cy.contains("已掃描的明細列表").click();
       cy.contains("讀取中").should("be.visible");
@@ -34,7 +34,7 @@ describe("Dashboard", () => {
     });
     it("已掃描明細列表，是否可以查詢沒中的帳號或序號？", () => {
       cy.visit(
-        `${LOCAL}login?token=${TOKEN}`
+        `${DEV}login?token=${TOKEN}`
       );
       cy.contains("已掃描的明細列表").click();
       cy.get('input').type('00231LC');
@@ -47,7 +47,7 @@ describe("Dashboard", () => {
     })
     it("已掃描明細列表，是否可以查詢中獎的帳號或序號？", () => {
       cy.visit(
-        `${LOCAL}login?token=${TOKEN}`
+        `${DEV}login?token=${TOKEN}`
       );
       cy.contains("已掃描的明細列表").click();
       cy.get('input').type('meng');
@@ -61,7 +61,7 @@ describe("Dashboard", () => {
     })
     it("已掃描明細列表，是否可以查詢全部的帳號或序號？", () => {
       cy.visit(
-        `${LOCAL}login?token=${TOKEN}`
+        `${DEV}login?token=${TOKEN}`
       );
       cy.contains("已掃描的明細列表").click();
       cy.get('select').select('中獎');
