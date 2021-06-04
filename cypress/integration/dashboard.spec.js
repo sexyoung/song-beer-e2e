@@ -1,4 +1,4 @@
-const TOKEN ='277e02155124c2cd1abc6d05e6f3065ba7fb0068';
+const TOKEN ='52a12864c3e060c381b0cb7c3f6971e2f4392d5e';
 
 const LOCAL = 'http://localhost:3001/'
 const DEV = 'https://tsb-dashboard.sexyoung.tw/';
@@ -50,12 +50,11 @@ describe("Dashboard", () => {
         `${DEV}login?token=${TOKEN}`
       );
       cy.contains("已掃描的明細列表").click();
-      cy.get('input').type('meng');
+      cy.get('input').type('AWHKQ7D');
       cy.get('select').select('中獎');
-      cy.get('form').submit();
       cy.contains("讀取中").should("be.visible");
       cy.get('input').clear();
-      cy.get('input').type('kellyu00621');
+      cy.get('input').type('昝琬貞');
       cy.get('form').submit();
       cy.contains("讀取中").should("be.visible");
     })
@@ -70,13 +69,24 @@ describe("Dashboard", () => {
       cy.get('select').select('全部');
     })
   });
-  // describe('中獎頁', () => {
-  //   it("switch to winner", () => {
-  //     cy.visit(
-  //       `${LOCAL}login?token=${TOKEN}`
-  //     );
-  //     cy.contains("中獎者清單頁").click();
-  //     cy.contains("讀取中").should("be.visible");
-  //   });
-  // });
+  describe('中獎頁', () => {
+    it("中獎者清單頁，資料是否有出現？", () => {
+      cy.visit(
+        `${DEV}login?token=${TOKEN}`
+      );
+      cy.contains("中獎者清單頁").click();
+      cy.contains("讀取中").should("be.visible");
+      cy.contains("行李箱").click();
+      cy.contains("⽔杯⼤").click();
+      cy.contains("野餐墊").click();
+      cy.contains("水杯⼩").click();
+      cy.contains("冰 桶").click();
+      cy.contains("昝琬貞").should("be.visible");
+      cy.contains("AWHKQ7D").should("be.visible");
+      cy.contains("094159307").should("be.visible");
+      cy.contains("澎湖縣白沙鄉南橋一路七段442巷511弄831號84樓").should("be.visible");
+      cy.contains("06/04").should("be.visible");
+      cy.contains("fb登入帳號 : 昝琬貞").should("be.visible");
+    });
+  });
 });
