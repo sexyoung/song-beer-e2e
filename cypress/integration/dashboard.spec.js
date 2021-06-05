@@ -23,44 +23,44 @@ describe("Dashboard", () => {
     //   cy.contains("07/13").click();
     //   cy.contains("06/25").click();
     // });
-    it("掃描狀況大表，「已掃描數量」是否顯示實際的「已掃描數量」？", () => {
-      cy.visit(`${DEV}login?token=${TOKEN}`);
-    });
-    it("掃描狀況大表，「未掃描數量」是否顯示實際的「未掃描數量」？", () => {
-      cy.visit(`${DEV}login?token=${TOKEN}`);
-    });
-    it("掃描狀況大表，「開獎數量」是否顯示實際的「開獎數量」？", () => {
-      cy.visit(`${DEV}login?token=${TOKEN}`);
-    });
-    it("掃描狀況大表，「未開獎數量」是否顯示實際的「未開獎數量」？", () => {
-      cy.visit(`${DEV}login?token=${TOKEN}`);
-    });
+    // it("掃描狀況大表，「已掃描數量」是否顯示實際的「已掃描數量」？", () => {
+    //   cy.visit(`${DEV}login?token=${TOKEN}`);
+    // });
+    // it("掃描狀況大表，「未掃描數量」是否顯示實際的「未掃描數量」？", () => {
+    //   cy.visit(`${DEV}login?token=${TOKEN}`);
+    // });
+    // it("掃描狀況大表，「開獎數量」是否顯示實際的「開獎數量」？", () => {
+    //   cy.visit(`${DEV}login?token=${TOKEN}`);
+    // });
+    // it("掃描狀況大表，「未開獎數量」是否顯示實際的「未開獎數量」？", () => {
+    //   cy.visit(`${DEV}login?token=${TOKEN}`);
+    // });
     // it("掃描狀況大表，今日序號是否顯示？", () => {
     //   cy.visit(`${DEV}login?token=${TOKEN}`);
     //   cy.contains("今日序號").should("be.visible");
     // });
-    it("掃描狀況大表，獎項已抽出數字是否顯示？", () => {
-      cy.visit(`${DEV}login?token=${TOKEN}`);
-    });
+    // it("掃描狀況大表，獎項已抽出數字是否顯示？", () => {
+    //   cy.visit(`${DEV}login?token=${TOKEN}`);
+    // });
     it("掃描狀況大表，獎項配額是否可以更改？", () => {
       cy.visit(`${DEV}login?token=${TOKEN}`);
-      cy.contains("水杯⼩(9)").click();
-      cy.get('input').clear();
-      cy.get('input').type(2);
-      // 變成20?
+      cy.contains("06/06").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
+      cy.contains("刪除").click();
       cy.contains("存檔").click();
-      // cy.contains("水杯⼩").click();
-      // cy.contains("水杯⼩").click();
-      // cy.contains("水杯⼩").click();
-      // cy.contains("⽔杯⼤").click();
-      // cy.contains("⽔杯⼤").click();
-      // cy.contains("野餐墊").click();
-      // cy.contains("野餐墊").click();
-      // cy.contains("野餐墊").click();
-      // cy.contains("野餐墊").click();
-      // cy.contains("冰 桶").click();
-      // cy.contains("行李箱").click();
+      cy.contains("冰 桶(1)").click();
+      cy.contains("存檔").click();
     });
+    // it("恢復原狀", () => {
+
+    // })
     // it("掃描狀況大表，獎項配額數字更改是否可以存檔？", () => {
     //   cy.visit(`${DEV}login?token=${TOKEN}`);
     //   cy.contains("行李箱(1)").click();
