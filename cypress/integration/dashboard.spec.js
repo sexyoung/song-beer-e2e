@@ -1,4 +1,4 @@
-const TOKEN = "52a12864c3e060c381b0cb7c3f6971e2f4392d5e";
+const TOKEN = "49941b39dc0b7fb4375f6ab3a1ecdd44fdcdc3d9";
 
 const LOCAL = "http://localhost:3001/";
 const DEV = "https://tsb-dashboard.sexyoung.tw/";
@@ -57,10 +57,19 @@ describe("Dashboard", () => {
       cy.contains("存檔").click();
       cy.contains("冰 桶(1)").click();
       cy.contains("存檔").click();
+      cy.contains("刪除").click();
+      cy.contains("存檔").click();
+      cy.contains("水杯⼩(3)").click();
+      cy.contains("水杯⼩(2)").click();
+      cy.contains("水杯⼩(1)").click();
+      cy.contains("⽔杯⼤(2)").click();
+      cy.contains("⽔杯⼤(1)").click();
+      cy.contains("野餐墊(2)").click();
+      cy.contains("野餐墊(1)").click();
+      cy.contains("冰 桶(1)").click();
+      cy.contains("行李箱(1)").click();
+      cy.contains("存檔").click();
     });
-    // it("恢復原狀", () => {
-
-    // })
     // it("掃描狀況大表，獎項配額數字更改是否可以存檔？", () => {
     //   cy.visit(`${DEV}login?token=${TOKEN}`);
     //   cy.contains("行李箱(1)").click();
